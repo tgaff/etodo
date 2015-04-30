@@ -6,14 +6,24 @@
 
   <section id="main">
     <ul id="todo-list">
+      {{#each todo in model}}
+      <li {{bind-attr class="todo.isCompleted:completed"}}>
+          <input type="checkbox" class="toggle">
+          <label>{{todo.title}}</label><button class="destroy"></button>
+        </li>
+      {{/each}}
+    </ul>
+
+<!-- dev note: alternative (simpler) syntax
+    <ul id="todo-list">
       {{#each}}
-        <li>
+      <li {{bind-attr class="isCompleted:completed"}}>
           <input type="checkbox" class="toggle">
           <label>{{title}}</label><button class="destroy"></button>
         </li>
       {{/each}}
     </ul>
-
+    -->
     <input type="checkbox" id="toggle-all">
   </section>
 
