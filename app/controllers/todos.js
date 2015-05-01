@@ -20,5 +20,9 @@ export default Ember.ArrayController.extend({
       // Save the new model
       todo.save();
     }
-  }
+  }//,
+  // we only `needs` here if we want to give access to todo controller
+  // from this context.  So now it's accessible like:
+  // action "editTodo" target="controllers.todo"
+  //needs: ["todo"]
 });
