@@ -25,7 +25,8 @@
             {{input class="edit" type="text" value=model.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
           {{else}}
             {{input type="checkbox" checked=isCompleted class="toggle"}}
-            <label {{action "editTodo" on="doubleClick"}}>{{model.title}}</label><button class="destroy"></button>
+            <label {{action "editTodo" on="doubleClick"}}>{{model.title}}</label>
+            <button {{action "removeTodo"}} class="destroy"></button>
           {{/if}}
         </li>
       {{/each}}

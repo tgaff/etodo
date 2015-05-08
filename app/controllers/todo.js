@@ -24,6 +24,11 @@ export default Ember.Controller.extend({
         console.log('save[' + this.get('model.title') + ']');
         this.get('model').save();
       }
+    },
+    removeTodo: function() {
+      var todo = this.get('model');
+      todo.deleteRecord();
+      todo.save();
     }
   }
 });
