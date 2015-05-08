@@ -19,8 +19,22 @@ export default Ember.ArrayController.extend({
 
       // Save the new model
       todo.save();
-    }
-  }//,
+    },
+  },
+  remaining: function() {
+    var allCompleted = this.filterBy('isCompleted', false);
+    return allCompleted.get('length');
+  }.property('@each.isCompleted'),
+
+  inflection: function() {
+    if (this.get('remaining') === 1) {
+      return 'item';
+    } else {
+      return 'items';
+    };
+  }.property('remaining')
+
+  //,
   // we only `needs` here if we want to give access to todo controller
   // from this context.  So now it's accessible like:
   // action "editTodo" target="controllers.todo"
