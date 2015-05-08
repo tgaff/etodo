@@ -20,6 +20,12 @@ export default Ember.ArrayController.extend({
       // Save the new model
       todo.save();
     },
+    clearCompleted: function() {
+      //var completedCount = this.get('remaining');
+      var allCompleted = this.filterBy('isCompleted', true);
+      allCompleted.invoke('deleteRecord');
+      allCompleted.invoke('save');
+    }
   },
   remaining: function() {
     var allCompleted = this.filterBy('isCompleted', false);
