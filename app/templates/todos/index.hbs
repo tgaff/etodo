@@ -1,0 +1,45 @@
+<!--
+   So this way worked fine, but I'm not happy that I had to
+   drop the use of #each item in model
+   -->
+   <ul id="todo-list">
+      {{#each itemController="todo"}}
+        <li {{bind-attr class="model.isCompleted:completed isEditing:editing"}}>
+          {{#if isEditing}}
+            {{input class="edit" type="text" value=model.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+          {{else}}
+            {{input type="checkbox" checked=model.isCompleted class="toggle"}}
+            <label {{action "editTodo" on="doubleClick"}}>{{model.title}}</label>
+            <button {{action "removeTodo"}} class="destroy"></button>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+<!-- note this is how to do it if you want to use
+    // #each item in model
+    //
+    <ul id="todo-list">
+      {{#each item in model}}
+        <li {{bind-attr class="isCompleted:completed"}}>
+          {{#if item.isEditing}}
+            <input class="edit">
+          {{else}}
+            {{input type="checkbox" class="toggle" checked=item.isCompleted}}
+            <label {{action "editTodo" target="controllers.todo" on="doubleClick"}}>{{item.title}}</label><button class="destroy"></button>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+-->
+
+<!-- dev note: alternative (simpler) syntax
+    <ul id="todo-list">
+      {{#each}}
+      <li {{bind-attr class="isCompleted:completed"}}>
+          <input type="checkbox" class="toggle">
+          <label>{{title}}</label><button class="destroy"></button>
+        </li>
+      {{/each}}
+    </ul>
+-->
+
