@@ -38,8 +38,10 @@ export default Ember.ArrayController.extend({
     } else {
       return 'items';
     };
-  }.property('remaining')
-
+  }.property('remaining'),
+  completedCount: function() {
+    return this.filterBy('isCompleted', true).get('length');
+  }.property('@each.isCompleted')
   //,
   // we only `needs` here if we want to give access to todo controller
   // from this context.  So now it's accessible like:
