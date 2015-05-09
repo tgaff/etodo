@@ -39,9 +39,22 @@ export default Ember.ArrayController.extend({
       return 'items';
     };
   }.property('remaining'),
+
   completedCount: function() {
     return this.filterBy('isCompleted', true).get('length');
-  }.property('@each.isCompleted')
+  }.property('@each.isCompleted'),
+
+  allAreDone: function(key, value) {
+    console.log("key: " + key + " value: " + value);
+    if ( value === undefined ) {
+      // the checkbox was not touched, this was triggered by property update
+      return this.get('remaining') === 0 ? true : false;
+    } else {
+      this.setEach('isCompleted', value);  // mark each true/false
+      this.invoke('save');  // save each
+      return value;
+    }
+  }.property('remaining')
   //,
   // we only `needs` here if we want to give access to todo controller
   // from this context.  So now it's accessible like:
